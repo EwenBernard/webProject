@@ -1,0 +1,30 @@
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Voisinons!</title>
+        <!-- Load Vue followed by Vue Router -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id ="app">
+          <header>
+          </header>
+          <main>
+            <div v-if="isConnected">
+              miam
+            </div>
+            <router-view
+            :user ="user"
+            :is-connected ="isConnected"
+            @register ="register"
+            @login ="login"
+            @register ="register"
+            ></router-view>
+          </main>
+        </div>
+        <script src="/login-application.js"></script>
+    </body>
+</html>
