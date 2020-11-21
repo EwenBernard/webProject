@@ -108,4 +108,22 @@ router.get('/me', async (req,res)=>{
       }
   })
 
+  router.post('/Home', async(req,res)=>{
+    const title = req.body.title
+    const message = req.body.message
+    const sql = 'SELECT * FROM public.users WHERE id=$1'
+    const result = await client.query(sql,id)
+    user = result.rows[0].email
+
+    if(result.rows.length == 0){
+        res.status(400).json({ message: 'user not exist' })
+        return
+    }
+
+    
+    
+
+
+  })
+
 module.exports = router
