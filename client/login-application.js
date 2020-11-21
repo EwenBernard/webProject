@@ -4,7 +4,7 @@ const Home = window.httpVueLoader('.components/Home.vue')
 
 const routes = [
     {path : '/', component: Login},
-    {path : '/register', component: Register}
+    {path : '/register', component: Register},
     {path : '/Home', component: Home},
 
 ]
