@@ -120,10 +120,35 @@ router.get('/me', async (req,res)=>{
         return
     }
 
-    
-    
+    const sql = 'INSERT INTO public.annonce (title, text, userId) VALUES ($1,$2,$3)'
+    const result = await client.query(sql, [title, message, req.session.userId])
 
+    res.json('ok')
+  })
 
+  router.get('/Home', async(req,res)=>
+  {
+      const sql = 'SELECT * FROM public.annonce'
+      const result = await client.query(sql)
+      res.json(result.rows)
+  })
+
+  router.delete('/Home', async(req,res)=>{
+      const msgId = req.body.msgId
+      const userId = req.body.userId
+      const sql = 'SELECT * FROM public.annonce WHERE id=$1'
+      result = await client.query(sql,msgId)
+
+      if(result.rows[0].msgId != 0 && result.rows[0].userId == userId)
+      {
+          const sql = 'DELETE FROM public.annonce WHERE id=$1'
+          const result = await client.query(sql,msgId)
+          res.json('ok')
+      }
+      else
+      {
+          res.status(400).json({message: 'message not exist or not authorized to delete'})
+      }
   })
 
 module.exports = router
