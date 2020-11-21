@@ -57,7 +57,6 @@
             getUserId(){
                 const res = await axios.post('/api/me', user)
                 this.user = res.data
-
             }
         }
     }         
