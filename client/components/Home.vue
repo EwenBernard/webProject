@@ -1,9 +1,9 @@
 <template>
     <div id="app">
         <h1>Annonces</h1>
-        <article v-for= "item in annonce">
-            <h2>{{ item.nameActivite }} - {{ item.nameUser }}</h2>
-            <p> {{ item.message }}</p>
+        <article v-for= "item in annonce" :key="item.message">
+            <h2>{{ item.title }} - {{ item.user }}</h2>
+            <p> {{ item.text }}</p>
         </article>
         <div id="pop-up">
             <button class="button" @click="showModal = true">
@@ -15,7 +15,7 @@
             <transition name="slide" appear>
                 <div class="modal" v-if="showModal">
                     <b>Annonce</b>
-                    <input placeholder="Description"></input>
+                    <input placeholder="Description">
                     <button class="button" @click="showModal = false">
                         X
                     </button>
