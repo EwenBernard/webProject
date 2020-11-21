@@ -30,7 +30,8 @@
         name:"Home",
         props: {
             annonces: { type: Object },
-            status: { type: Object }
+            status: { type: Object },
+            user: { type: Object }
         },
         data () {
             return {
@@ -51,6 +52,12 @@
 
             removeAnnonce(){
                 this.$emit('removeAnnonce', this.annonce)
+            },
+
+            getUserId(){
+                const res = await axios.post('/api/me', user)
+                this.user = res.data
+
             }
         }
     }         
