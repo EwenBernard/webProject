@@ -26,6 +26,9 @@ var app = new Vue({
     el: '#app',
     data:{
         user: {},
+        homeText:{},
+        entraideText:{},
+        planText:{},
         isConnected: false,
     },
 
@@ -44,6 +47,11 @@ var app = new Vue({
             }
         }
     },*/
+
+    async mounted (){
+        const res = await axios.get('/api/home')
+        this.homeText = res.data
+    },
 
     methods: 
     {
