@@ -26,9 +26,9 @@ var app = new Vue({
     el: '#app',
     data:{
         user: {},
-        homeText:{},
-        entraideText:{},
-        planText:{},
+        homeText:[],
+        entraideText:[],
+        planText:[],
         isConnected: false,
     },
 
@@ -70,6 +70,6 @@ var app = new Vue({
         async addAnnonce(annonce) {
             const res = await axios.post('api/home', {annonce, userId: this.user.id})
         }
-        
+
     }
 })
