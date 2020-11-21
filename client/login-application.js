@@ -32,25 +32,23 @@ var app = new Vue({
         isConnected: false,
     },
 
-    /*async mounted () {
+    async mounted (){
+        const res = await axios.get('/api/home')
+        this.homeText = res.data
+
         try {
             const res = await axios.get('/api/me')
             this.user = res.data
-            //this.isConnected = true
+            this.isConnected = true
           } catch (err) {
             if (err.response?.status === 401) {
                 console.log('bad')
-              //this.isConnected = false
+                this.isConnected = false
             } else {
                 console.log('shit')
               console.log('error', err)
             }
         }
-    },*/
-
-    async mounted (){
-        const res = await axios.get('/api/home')
-        this.homeText = res.data
     },
 
     methods: 
@@ -72,6 +70,6 @@ var app = new Vue({
         async addAnnonce(annonce) {
             const res = await axios.post('api/home', {annonce, userId: this.user.id})
         }
-
+        
     }
 })

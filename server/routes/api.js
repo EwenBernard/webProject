@@ -90,22 +90,17 @@ router.post('/register', async (req,res) =>
 })
 
 router.get('/me', async (req,res)=>{
-    const email = req.body.email
-    const email2 = email.trim()
-  
-    const sql = 'SELECT * FROM public.users WHERE email=$1'
-    const result = await client.query(sql,[email2])
-  
-    if(req.session.userId == result.rows[0].id){
-      res.status(401).json({message: 'already authenticated'})
-      return
-    }
-  
-    else{
-      req.session.userId = result.rows[0].id
-      res.json(result.rows[0].id)
-      return
+    if (typeof req.session.userId === 'undefined') {
+        res.status(401).json({ message: 'not connected' })
+        return
       }
+    
+      const result = await client.query({
+        text: 'SELECT id, email FROM public.users WHERE id=$1',
+        values: [req.session.userId]
+      })
+    
+      res.json(result.rows[0])
   })
 
   router.post('/home', async(req,res)=>{
@@ -116,7 +111,7 @@ router.get('/me', async (req,res)=>{
     console.log(text)
     console.log(title)
 
-    sql = 'INSERT INTO public.annonce (title, text, userId) VALUES ($1,$2,$3) RETURNING *'
+    sql = 'INSERT INTO public.annonce (title, text, userid) VALUES ($1,$2,$3) RETURNING *'
     result = await client.query(sql, [title, text, userId])
 
     console.log(result.rows[0])
@@ -132,12 +127,14 @@ router.get('/me', async (req,res)=>{
   })
 
   router.delete('/home', async(req,res)=>{
-      const msgId = req.body.msgId
+      const title = req.body.title
+      const text = req.body.text
       const userId = req.body.userId
-      const sql = 'SELECT * FROM public.annonce WHERE id=$1'
-      result = await client.query(sql,[msgId])
+      const sql = 'SELECT * FROM public.annonce WHERE title=$1 AND text=$2 AND userid=$3'
+      result = await client.query(sql,[title,text,userId])
       console.log(result.rows[0])
       console.log(result.rows.length)
+      const msgId = result.rows[0].id
 
       if(result.rows.length != 0 && result.rows[0].userid == userId)
       {

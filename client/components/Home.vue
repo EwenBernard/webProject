@@ -27,7 +27,7 @@
 
 <script>
     module.exports = {
-        name:"Annonce",
+        name:"Home",
         props: {
             annonces: { type: Object },
             status: { type: Object }
@@ -45,8 +45,12 @@
         async mounted () {
         },
         methods: {
-            annonce() {
+            addAnnonce() {
                 this.$emit('addAnnonce', this.annonce)
+            },
+
+            removeAnnonce(){
+                this.$emit('removeAnnonce', this.annonce)
             }
         }
     }         
