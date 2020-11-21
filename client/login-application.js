@@ -1,10 +1,10 @@
 const Login = window.httpVueLoader('./components/Login.vue')
 const Register = window.httpVueLoader('./components/Register.vue')
 
-const Home = window.httpVueLoader('.components/Home.vue')
-const Entraide = window.httpVueLoader('.components/Entraide.vue')
-const Plan = window.httpVueLoader('.components/Plan.vue')
-const Profil = window.httpVueLoader('.components/Profil.vue')
+const Home = window.httpVueLoader('./components/Home.vue')
+const Entraide = window.httpVueLoader('./components/Entraide.vue')
+const Plan = window.httpVueLoader('./components/Plan.vue')
+const Profil = window.httpVueLoader('./components/Profil.vue')
 
 
 
@@ -70,7 +70,7 @@ var app = new Vue({
         },
 
         async addAnnonce(annonce) {
-            const res = await axios.post('api/home', {annonce, userId: this.user.id})
+            const res = await axios.post('/api/home', {annonce, userId: this.user.id})
         }
 
     }
