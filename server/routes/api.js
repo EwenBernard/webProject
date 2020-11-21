@@ -113,6 +113,7 @@ router.get('/me', async (req,res)=>{
     const text = req.body.text
     const userId = req.body.userId
 
+    console.log(text)
     console.log(title)
 
     sql = 'INSERT INTO public.annonce (title, text, userId) VALUES ($1,$2,$3) RETURNING *'
@@ -134,12 +135,14 @@ router.get('/me', async (req,res)=>{
       const msgId = req.body.msgId
       const userId = req.body.userId
       const sql = 'SELECT * FROM public.annonce WHERE id=$1'
-      result = await client.query(sql,msgId)
+      result = await client.query(sql,[msgId])
+      console.log(result.rows[0])
+      console.log(result.rows.length)
 
-      if(result.rows[0].msgId != 0 && result.rows[0].userId == userId)
+      if(result.rows.length != 0 && result.rows[0].userid == userId)
       {
           const sql = 'DELETE FROM public.annonce WHERE id=$1'
-          const result = await client.query(sql,msgId)
+          const result = await client.query(sql,[msgId])
           res.json('ok')
       }
       else

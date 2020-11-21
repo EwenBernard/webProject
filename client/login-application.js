@@ -26,7 +26,7 @@ var app = new Vue({
     el: '#app',
     data:{
         user: {},
-        isConnected: false
+        isConnected: false,
     },
 
     /*async mounted () {
