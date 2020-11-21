@@ -1,9 +1,12 @@
 const Login = window.httpVueLoader('./components/Login.vue')
 const Register = window.httpVueLoader('./components/Register.vue')
+const Home = window.httpVueLoader('.components/Home.vue')
 
 const routes = [
     {path : '/', component: Login},
     {path : '/register', component: Register}
+    {path : '/Home', component: Home},
+
 ]
 
 const router = new VueRouter({
