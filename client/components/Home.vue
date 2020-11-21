@@ -1,11 +1,7 @@
 <template>
     <div id="app">
         <h1>Annonces</h1>
-<<<<<<< Updated upstream
-        <article v-for= "item in annonce" :key="item.message">
-            <h2>{{ item.title }} - {{ item.user }}</h2>
-=======
-        <article v-for= "item in homeText" :key="homeText.id">
+        <article v-for= "item in homeText" :key="item.id">
             <h2>{{ item.title }} - {{ item.UserId }}</h2>
             <p> {{ item.text }}</p>
         </article>

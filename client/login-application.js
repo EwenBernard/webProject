@@ -58,6 +58,7 @@ var app = new Vue({
             const res = await axios.post('/api/login', user)
             this.user = res.data
             this.isConnected = true
+            this.$router.push('/home')
         },
 
         async register(user)
@@ -65,6 +66,7 @@ var app = new Vue({
             const res = await axios.post('/api/register', user)
             this.user = res.data
             this.isConnected = true
+            this.$router.push('/home')
         },
 
         async addAnnonce(annonce) {
