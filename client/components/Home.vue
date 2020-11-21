@@ -7,7 +7,6 @@
 =======
         <article v-for= "item in homeText" :key="homeText.id">
             <h2>{{ item.title }} - {{ item.UserId }}</h2>
->>>>>>> Stashed changes
             <p> {{ item.text }}</p>
         </article>
         <div id="pop-up">
