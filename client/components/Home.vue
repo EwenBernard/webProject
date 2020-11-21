@@ -35,9 +35,8 @@
         data () {
             return {
             annonce:{
-                nameActivite: '',
-                nameUser: '',
-                message: ''
+                title:"",
+                text:"",
             }, 
             showModal: true,
             status: O
@@ -47,7 +46,7 @@
         },
         methods: {
             annonce() {
-                this.$emit('annonce', this.annonce)
+                this.$emit('addAnnonce', this.annonce)
             }
         }
     }         

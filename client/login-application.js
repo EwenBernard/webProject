@@ -67,6 +67,11 @@ var app = new Vue({
             const res = await axios.post('/api/register', user)
             this.user = res.data
             this.isConnected = true
+        },
+
+        async addAnnonce(annonce) {
+            const res = await axios.post('api/home', {annonce, userId: this.user.id})
         }
+
     }
 })
