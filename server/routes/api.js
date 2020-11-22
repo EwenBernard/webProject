@@ -149,6 +149,96 @@ router.get('/me', async (req,res)=>{
       }
   })
 
+  router.post('/entraide', async(req,res)=>{
+    const title = req.body.title
+    const text = req.body.text
+    const userId = req.body.userId
+
+    console.log(text)
+    console.log(title)
+
+    sql = 'INSERT INTO public.annonceentraide (title, text, userid) VALUES ($1,$2,$3) RETURNING *'
+    result = await client.query(sql, [title, text, userId])
+
+    console.log(result.rows[0])
+
+    res.json(result.rows)
+  })
+
+  router.get('/entraide', async(req,res)=>
+  {
+      const sql = 'SELECT * FROM public.annonceentraide'
+      const result = await client.query(sql)
+      res.json(result.rows)
+  })
+
+  router.delete('/entraide', async(req,res)=>{
+      const title = req.body.title
+      const text = req.body.text
+      const userId = req.body.userId
+      const sql = 'SELECT * FROM public.annonceentraide WHERE title=$1 AND text=$2 AND userid=$3'
+      result = await client.query(sql,[title,text,userId])
+      console.log(result.rows[0])
+      console.log(result.rows.length)
+      const msgId = result.rows[0].id
+
+      if(result.rows.length != 0 && result.rows[0].userid == userId)
+      {
+          const sql = 'DELETE FROM public.annonceentraide WHERE id=$1'
+          const result = await client.query(sql,[msgId])
+          res.json('ok')
+      }
+      else
+      {
+          res.status(400).json({message: 'message not exist or not authorized to delete'})
+      }
+  })
+
+  router.post('/plan', async(req,res)=>{
+    const title = req.body.title
+    const text = req.body.text
+    const userId = req.body.userId
+
+    console.log(text)
+    console.log(title)
+
+    sql = 'INSERT INTO public.annonceplan (title, text, userid) VALUES ($1,$2,$3) RETURNING *'
+    result = await client.query(sql, [title, text, userId])
+
+    console.log(result.rows[0])
+
+    res.json(result.rows)
+  })
+
+  router.get('/plan', async(req,res)=>
+  {
+      const sql = 'SELECT * FROM public.annonceplan'
+      const result = await client.query(sql)
+      res.json(result.rows)
+  })
+
+  router.delete('/entraideplan', async(req,res)=>{
+      const title = req.body.title
+      const text = req.body.text
+      const userId = req.body.userId
+      const sql = 'SELECT * FROM public.annonceplan WHERE title=$1 AND text=$2 AND userid=$3'
+      result = await client.query(sql,[title,text,userId])
+      console.log(result.rows[0])
+      console.log(result.rows.length)
+      const msgId = result.rows[0].id
+
+      if(result.rows.length != 0 && result.rows[0].userid == userId)
+      {
+          const sql = 'DELETE FROM public.annonceplan WHERE id=$1'
+          const result = await client.query(sql,[msgId])
+          res.json('ok')
+      }
+      else
+      {
+          res.status(400).json({message: 'message not exist or not authorized to delete'})
+      }
+  })
+
   router.post('/profil', async(req,res)=>{
       const email = req.body.email
       const password = req.body.password
