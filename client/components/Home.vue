@@ -22,7 +22,7 @@
         </div>
 
         <article v-for= "item in hometext" :key="item.id">
-            <h2>{{ item.title }} - {{ item.userId }}</h2>
+            <h2>{{ item.title }} - {{ item.userid }}</h2>
             <p> {{ item.text }}</p>
         </article>
     </div>
@@ -67,3 +67,6 @@
         }
     }         
 </script>
+
+<style>
+</style>

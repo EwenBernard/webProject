@@ -148,4 +148,22 @@ router.get('/me', async (req,res)=>{
       }
   })
 
+  router.post('/profil', async(req,res)=>{
+      const email = req.body.email
+      const password = req.body.password
+      const userId = req.body.id
+      console.log(userId)
+      console.log(password)
+      result = await client.query({
+        text: `UPDATE public.users
+                SET password=$1,
+                email=$2
+              WHERE id=$3 RETURNING *
+              `,
+        values: [password, email, userId]
+      })
+      console.log(result.rows)
+      res.json(result.rows)
+  })
+
 module.exports = router

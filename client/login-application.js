@@ -90,5 +90,11 @@ var app = new Vue({
             this.refresh()
         }
 
+        /*async changeUserInfo(user){
+            const email = user.email
+            const userId = user.id
+            const res = await axios.post
+        }*/
+
     }
 })
