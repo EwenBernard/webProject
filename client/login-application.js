@@ -13,7 +13,7 @@ const routes = [
     {path : '/home', component: Home},
     {path : '/entraide', component: Entraide},
     {path : '/plan', component: Plan},
-    {path : '/profil', component: Profil}
+    {path : '/profil' , component: Profil}
 ]
 
 const router = new VueRouter({
@@ -69,7 +69,11 @@ var app = new Vue({
 
         async register(user)
         {
-            const res = await axios.post('/api/register', user)
+            const firstname = user.firstname
+            const lastname = user.lastname
+            const email = user.email
+            const password = user.password
+            const res = await axios.post('/api/register', {firstname: firstname, lastname: lastname, email: email, password: password})
             this.user = res.data
             this.$router.push('/')
         },
@@ -88,13 +92,15 @@ var app = new Vue({
             const res = await axios.delete('/api/home', {text: text, title: title, userId: this.user.id})
             this.homeText.slice(res.data)
             this.refresh()
-        }
+        },
 
-        /*async changeUserInfo(user){
+        async changeUserInfo(user){
             const email = user.email
             const userId = user.id
-            const res = await axios.post
-        }*/
+            const firstname = user.firstname
+            const lastname = user.lastname
+            res = await axios.post('api/profil',{email: email, id: userId, firstname: firstname, lastname: lastname})
+        }
 
     }
 })

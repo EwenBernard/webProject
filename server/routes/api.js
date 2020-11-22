@@ -49,7 +49,9 @@ router.post('/login', async (req, res) =>
             req.session.userId = user.id
             res.json({
               id: user.id,
-              email: user.email
+              email: user.email,
+              lastname: user.lastname,
+              firstname: user.firstname
             })
         }
     }
@@ -66,14 +68,13 @@ router.post('/register', async (req,res) =>
     const email = req.body.email
     //const email2 = email.trim()
     const password = req.body.password
-    //const firstName = req.body.firstName
-    //const lastName = req.body.lastName
+    const firstName = req.body.firstname
+    const lastName = req.body.lastname
 
     const sql = 'SELECT email FROM public.users WHERE email=$1'
     const result = await client.query(sql,[email])
-    console.log(email)
-    console.log(result.rows)
-    console.log(result.rows.length)
+    console.log(firstName)
+    console.log(lastName)
 
     if(result.rows.length != 0){
         res.status(400).json({ message: 'user already exist' })
@@ -82,8 +83,8 @@ router.post('/register', async (req,res) =>
 
     else{
         const hash = await bcrypt.hash(password, 10)
-        const sql = 'INSERT INTO public.users (email, password) VALUES ($1, $2) RETURNING *;'
-        const result = await client.query(sql, [email, hash])
+        const sql = 'INSERT INTO public.users (email, password, firstname, lastname) VALUES ($1, $2, $3, $4) RETURNING *;'
+        const result = await client.query(sql, [email, hash, firstName, lastName])
         res.json(result.rows)
         console.log(result.rows)
       }
@@ -152,15 +153,20 @@ router.get('/me', async (req,res)=>{
       const email = req.body.email
       const password = req.body.password
       const userId = req.body.id
+      const firstname = req.body.firstname
+      const lastname = req.body.lastname
+
       console.log(userId)
       console.log(password)
       result = await client.query({
         text: `UPDATE public.users
                 SET password=$1,
-                email=$2
-              WHERE id=$3 RETURNING *
+                email=$2,
+                firstname=$3,
+                lastname=$4
+              WHERE id=$5 RETURNING *
               `,
-        values: [password, email, userId]
+        values: [password, email,firstname, lastname, userId]
       })
       console.log(result.rows)
       res.json(result.rows)

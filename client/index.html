@@ -1,6 +1,6 @@
 <html lang="fr">
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Voisinons!</title>
         <!-- Load Vue followed by Vue Router -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -19,13 +19,12 @@
         .logo {
             float: left;
             margin-left: 40px;
-            margin-top: 23px;
+            margin-top:23px;
             max-width: auto;
             height: 40px;
-            color: #9fa2a3;
-            text-decoration: none;
-            text-transform: uppercase;
             font-size: 14px;
+            color: #9fa2a3;
+
         }
 
         .navBar {
@@ -118,7 +117,6 @@
             @change-user-info="changeUserInfo"
             @add-annonce="addAnnonce"
             @remove-annonce="removeAnnonce"
-            @register ="register"
             @login ="login"
             @register ="register"
             ></router-view>
