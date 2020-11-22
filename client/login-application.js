@@ -71,7 +71,6 @@ var app = new Vue({
         {
             const res = await axios.post('/api/register', user)
             this.user = res.data
-            this.isConnected = true
             this.$router.push('/')
         },
 
@@ -90,6 +89,12 @@ var app = new Vue({
             this.homeText.slice(res.data)
             this.refresh()
         }
+
+        /*async changeUserInfo(user){
+            const email = user.email
+            const userId = user.id
+            const res = await axios.post
+        }*/
 
     }
 })

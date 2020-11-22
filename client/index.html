@@ -7,6 +7,89 @@
         <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <style>
+          body {
+            margin: auto;
+            padding-top: 50px;
+            background: #ffffff;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 400;
+        }
+
+        .logo {
+            float: left;
+            margin-left: 40px;
+            margin-top: 23px;
+            max-width: auto;
+            height: 40px;
+            color: #9fa2a3;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .navBar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            border: 1px solid #9fa2a3;
+            background-color: rgba(255, 255, 255, 0.93);
+        }
+
+        /*Erreur barre de navigation 0px*/
+        header::after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        nav {
+            float: right;
+        }
+
+        /*Unsort list*/
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /*List item*/
+        nav li {
+            display: inline-block;
+            margin-right: 70px;
+            padding-top: 23px;
+            position: relative;
+        }
+
+        nav a {
+            color: #9fa2a3;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #B3B6B7;
+        }
+
+        nav a::before {
+            content: '';
+            display: block;
+            height: 2px;
+            background-color: #B3B6B7;
+
+            position: absolute;
+            top: 0;
+            width: 0%;
+
+            transition: all ease-in-out 250ms;
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+      </style>
     </head>
     <body>
         <div id ="app">
@@ -14,14 +97,17 @@
           </header>
           <main>
             <div v-if="isConnected">
-              <nav>
-                <ul id="nav">
-                  <li id="nav-home"><router-link to='/home'>Annonces</router-link></li>
-                  <li id="nav-entraide"><router-link to='/entraide'>Entraide</router-link></li>
-                  <li id="nav-plan"><router-link to='/plan'></router-link>Bons Plans</li>
-                  <li id="nav-profil"><router-link to='/profil'>Profil</router-link></li>
-                </ul>
-              </nav>
+              <div class ="navBar">
+                <div class="logo">VOISINONS!</div>
+                <nav>
+                  <ul id="nav">
+                    <li id="nav-home"><router-link to='/home'>Annonces</router-link></li>
+                    <li id="nav-entraide"><router-link to='/entraide'>Entraide</router-link></li>
+                    <li id="nav-plan"><router-link to='/plan'>Bons Plans</router-link></li>
+                    <li id="nav-profil"><router-link to='/profil'>Profil</router-link></li>
+                  </ul>
+                </nav>
+              </div>
             </div>
             <router-view
             :user ="user"
@@ -29,6 +115,7 @@
             :entraideText ="entraideText"
             :planText ="planText"
             :is-connected ="isConnected"
+            @change-user-info="changeUserInfo"
             @add-annonce="addAnnonce"
             @remove-annonce="removeAnnonce"
             @register ="register"
