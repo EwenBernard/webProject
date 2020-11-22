@@ -94,6 +94,38 @@ var app = new Vue({
             this.refresh()
         },
 
+        async addAnnonceEntraide(annonce) {
+            const title = annonce.title
+            const text = annonce.text
+            const res = await axios.post('/api/entraide', {text: text, title: title, userId: this.user.id})
+            this.homeText.push(res.data)
+            this.refresh()
+        },
+
+        async removeAnnonceEntraide(annonce) {
+            const title = annonce.title
+            const text = annonce.text
+            const res = await axios.delete('/api/entraide', {text: text, title: title, userId: this.user.id})
+            this.homeText.slice(res.data)
+            this.refresh()
+        },
+
+        async addAnnoncePlan(annonce) {
+            const title = annonce.title
+            const text = annonce.text
+            const res = await axios.post('/api/plan', {text: text, title: title, userId: this.user.id})
+            this.homeText.push(res.data)
+            this.refresh()
+        },
+
+        async removeAnnoncePlan(annonce) {
+            const title = annonce.title
+            const text = annonce.text
+            const res = await axios.delete('/api/plan', {text: text, title: title, userId: this.user.id})
+            this.homeText.slice(res.data)
+            this.refresh()
+        },
+
         async changeUserInfo(user){
             const email = user.email
             const userId = user.id

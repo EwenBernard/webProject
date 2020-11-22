@@ -13,7 +13,7 @@
                     <form @submit.prevent="addAnnonce">
                         <input type="text" v-model="title" placeholder="Title" required>
                         <input type="text" v-model="text" placeholder="Text" required>
-                        <button class="button" type="submit">
+                        <button class="button" type="submit" @click="showModal = false">
                             Add
                         </button>
                     </form>
@@ -22,7 +22,7 @@
         </div>
 
         <article v-for= "item in hometext" :key="item.id">
-            <h2>{{ item.title }} - {{ item.userid }}</h2>
+            <h2>{{ item.title }}</h2>
             <p> {{ item.text }}</p>
         </article>
     </div>
