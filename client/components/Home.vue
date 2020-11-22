@@ -21,14 +21,6 @@
             </transition>
         </div>
 
-        <form @submit.prevent="addAnnonce">
-            <input type="text" v-model="title" placeholder="Title" required>
-            <input type="text" v-model="text" placeholder="Text" required>
-            <button class="button" type="submit">
-                Add
-            </button>
-        </form>
-
         <article v-for= "item in hometext" :key="item.id">
             <h2>{{ item.title }} - {{ item.userId }}</h2>
             <p> {{ item.text }}</p>
