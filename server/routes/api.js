@@ -116,7 +116,7 @@ router.get('/me', async (req,res)=>{
 
     console.log(result.rows[0])
 
-    res.json('ok')
+    res.json(result.rows)
   })
 
   router.get('/home', async(req,res)=>

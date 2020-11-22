@@ -75,13 +75,17 @@ var app = new Vue({
         },
 
         async addAnnonce(annonce) {
-            const res = await axios.post('/api/home', {annonce, userId: this.user.id})
+            const title = annonce.title
+            const text = annonce.text
+            const res = await axios.post('/api/home', {text: text, title: title, userId: this.user.id})
             this.homeText.push(res.data)
             this.refresh()
         },
 
         async removeAnnonce(annonce) {
-            const res = await axios.delete('/api/home', {annonce, userId: this.user.id})
+            const title = annonce.title
+            const text = annonce.text
+            const res = await axios.delete('/api/home', {text: text, title: title, userId: this.user.id})
             this.homeText.slice(res.data)
             this.refresh()
         }

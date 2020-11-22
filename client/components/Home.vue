@@ -11,8 +11,8 @@
             <transition name="slide" appear>
                 <div class="modal" v-if="showModal">
                     <form @submit.prevent="addAnnonce">
-                        <input type="text" v-model="annonce.title" placeholder="Title" required>
-                        <input type="text" v-model="annonce.text" placeholder="Text" required>
+                        <input type="text" v-model="title" placeholder="Title" required>
+                        <input type="text" v-model="text" placeholder="Text" required>
                         <button class="button" type="submit">
                             Add
                         </button>
@@ -22,8 +22,8 @@
         </div>
 
         <form @submit.prevent="addAnnonce">
-            <input type="text" v-model="annonce.title" placeholder="Title" required>
-            <input type="text" v-model="annonce.text" placeholder="Text" required>
+            <input type="text" v-model="title" placeholder="Title" required>
+            <input type="text" v-model="text" placeholder="Text" required>
             <button class="button" type="submit">
                 Add
             </button>
@@ -46,10 +46,8 @@
         },
         data () {
             return {
-            annonce:{
-                title:"",
-                text:""
-            }, 
+            title:'',
+            text:'', 
             showModal: false
             }
         },
@@ -57,11 +55,17 @@
         },
         methods: {
             addAnnonce() {
-                this.$emit('add-annonce', this.annonce)
+                this.$emit('add-annonce', {
+                    title: this.title,
+                    text: this.text
+                })
             },
 
             removeAnnonce(){
-                this.$emit('remove-annonce', this.annonce)
+                this.$emit('remove-annonce', {
+                    title: this.title,
+                    text: this.text
+                })
             },
 
             async getUserId(){
