@@ -20,7 +20,7 @@ module.exports = {
         user:{
             email: '',
             password: ''
-        }
+        },
     }
   },
   async mounted () {

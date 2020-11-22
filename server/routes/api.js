@@ -64,14 +64,14 @@ router.post('/login', async (req, res) =>
 router.post('/register', async (req,res) =>
 {
     const email = req.body.email
-    const email2 = email.trim()
+    //const email2 = email.trim()
     const password = req.body.password
     //const firstName = req.body.firstName
     //const lastName = req.body.lastName
 
     const sql = 'SELECT email FROM public.users WHERE email=$1'
-    const result = await client.query(sql,[email2])
-    console.log(email2)
+    const result = await client.query(sql,[email])
+    console.log(email)
     console.log(result.rows)
     console.log(result.rows.length)
 
@@ -83,7 +83,7 @@ router.post('/register', async (req,res) =>
     else{
         const hash = await bcrypt.hash(password, 10)
         const sql = 'INSERT INTO public.users (email, password) VALUES ($1, $2) RETURNING *;'
-        const result = await client.query(sql, [email2, hash])
+        const result = await client.query(sql, [email, hash])
         res.json(result.rows)
         console.log(result.rows)
       }

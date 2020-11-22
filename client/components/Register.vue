@@ -2,8 +2,8 @@
   <div>
     <form @submit.prevent="register()">
       <h2>Register</h2>
-      <input type="text" v-model="user.email" placeholder="Email" required>
-      <input type="text" v-model="user.password" placeholder="Password" required>
+      <input type="text" v-model="email" placeholder="Email" required>
+      <input type="text" v-model="password" placeholder="Password" required>
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -16,10 +16,8 @@ module.exports = {
   },
   data () {
     return {
-        user:{
-            email: '',
-            password: ''
-        },
+        email: '',
+        password: ''
     }
   },
   async mounted () {
@@ -30,7 +28,6 @@ module.exports = {
         email: this.email,
         password: this.password
       })
-      this.$router.push('/login')
     },
   }
 }

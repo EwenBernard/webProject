@@ -48,7 +48,7 @@
             return {
             annonce:{
                 title:"",
-                text:"",
+                text:""
             }, 
             showModal: false
             }
