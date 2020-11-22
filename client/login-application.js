@@ -43,6 +43,7 @@ var app = new Vue({
           } catch (err) {
             if (err.response?.status === 401) {
                 this.isConnected = false
+                this.$router.push('/')
             } else {
               console.log('error', err)
             }
