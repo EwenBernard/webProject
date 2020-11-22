@@ -27,7 +27,7 @@
         </article>
     </div>
 </template>
-
+ 
 <script>
     module.exports = {
         name:"Home",
