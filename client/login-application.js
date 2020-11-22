@@ -1,6 +1,5 @@
 const Login = window.httpVueLoader('./components/Login.vue')
 const Register = window.httpVueLoader('./components/Register.vue')
-
 const Home = window.httpVueLoader('./components/Home.vue')
 const Entraide = window.httpVueLoader('./components/Entraide.vue')
 const Plan = window.httpVueLoader('./components/Plan.vue')
@@ -35,6 +34,7 @@ var app = new Vue({
     async mounted (){
         const res = await axios.get('/api/home')
         this.homeText = res.data
+        console.log('Actualisation')
 
         try {
             const res = await axios.get('/api/me')
@@ -42,10 +42,8 @@ var app = new Vue({
             this.isConnected = true
           } catch (err) {
             if (err.response?.status === 401) {
-                console.log('bad')
                 this.isConnected = false
             } else {
-                console.log('shit')
               console.log('error', err)
             }
         }
@@ -53,6 +51,13 @@ var app = new Vue({
 
     methods: 
     {
+
+        async refresh()
+        {
+            const res = await axios.get('/api/home')
+            this.homeText = res.data
+        },
+
         async login(user)
         {
             const res = await axios.post('/api/login', user)
@@ -71,6 +76,14 @@ var app = new Vue({
 
         async addAnnonce(annonce) {
             const res = await axios.post('/api/home', {annonce, userId: this.user.id})
+            this.homeText.push(res.data)
+            this.refresh()
+        },
+
+        async removeAnnonce(annonce) {
+            const res = await axios.delete('/api/home', {annonce, userId: this.user.id})
+            this.homeText.slice(res.data)
+            this.refresh()
         }
 
     }
