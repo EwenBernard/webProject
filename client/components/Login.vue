@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="login">
       <div class="imgcontainer">
-            <img src="https://www.notretemps.com/cache/com_zoo_images/e9/voisins-fete-relation_6269e858eb731c9db830eb438423fa55.jpg" alt="Avatar" class="avatar">
+            <img src="https://scontent-cdt1-1.xx.fbcdn.net/v/t1.15752-9/138684821_1018511501892458_6537703867276357587_n.png?_nc_cat=106&ccb=2&_nc_sid=ae9488&_nc_ohc=pfeZFAGG4kEAX9g67Mo&_nc_ht=scontent-cdt1-1.xx&oh=aa0eb822785740579e2781c2602bcca0&oe=60270008" alt="Avatar" class="avatar">
       </div>
       
       <div class="container">
@@ -73,7 +73,8 @@ module.exports = {
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: violet;
+            font-size: large;
             color: white;
             padding: 14px 20px;
             margin: 8px 0;
@@ -93,7 +94,6 @@ module.exports = {
 
         img.avatar {
             width: 20%;
-            border-radius: 50%;
         }
 
         .container {

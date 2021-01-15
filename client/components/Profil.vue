@@ -2,8 +2,8 @@
     <div id="app">
         <h1>Profil</h1>
         <div v-if="modify == false">
-            <h3>First name: {{user.firstname}}</h3>
-            <h3>Last name: {{user.lastname}}</h3>
+            <h3>First name: Ewen</h3>
+            <h3>Last name: Bernard</h3>
             <h3>Email: {{user.email}}</h3>
             <button class="button" @click="modify = true">
                 Modifier Profil

@@ -96,8 +96,9 @@
     }
 
     button {
-        background-color: #4CAF50;
+        background-color: violet;
         color: white;
+        font-size: large;
         padding: 14px 20px;
         margin: 8px 0;
         border: none;
@@ -114,8 +115,8 @@
         line-height: 25px ;
         font-size: 1.4em ;
         background-size: 20px 20px;
-        color: #4CAF50 ;
-        border-bottom: 1px solid #4CAF50 ;
+        color: violet;
+        border-bottom: 1px solid violet ;
     }
 
     div#contenu p {
@@ -126,18 +127,18 @@
 
     h1 {
         text-align: center;
-        color: #4CAF50;
+        color: violet;
     }
 
     article{
-	width: 60% ;
-	margin: 0 auto ;
-	text-align: left ;
-	border: 2px solid #4CAF50 ;
-	background: #fff ;
+    width: 60% ;
+    margin: 0 auto ;
+    text-align: left ;
+    border: 2px solid violet ;
+    background: #fff ;
     margin-bottom: 10px;
 
-	box-shadow: 0 0 1em rgb(209, 207, 207);
+    box-shadow: 0 0 1em rgb(209, 207, 207);
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
     border-radius: 15px;

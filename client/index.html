@@ -16,22 +16,11 @@
             font-weight: 400;
         }
 
-        .logo {
-            float: left;
-            margin-left: 40px;
-            margin-top:23px;
-            max-width: auto;
-            height: 40px;
-            font-size: 14px;
-            color: #9fa2a3;
-
-        }
-
         .navBar {
             position: fixed;
             top: 0;
             width: 100%;
-            border: 1px solid #9fa2a3;
+            border: 1px solid yellow;
             background-color: rgba(255, 255, 255, 0.93);
         }
 
@@ -40,6 +29,24 @@
             content: '';
             display: table;
             clear: both;
+        }
+
+        .logo {
+            float: left;
+            padding: 10px 0;
+            max-width: auto;
+            margin-left: 30px;
+            height: 40px;
+        }
+
+        .logo2 {
+            float: left;
+            margin-left: 10px;
+            margin-top:23px;
+            max-width: auto;
+            height: 40px;
+            font-size: 14px;
+            color: violet;
         }
 
         nav {
@@ -62,21 +69,21 @@
         }
 
         nav a {
-            color: #9fa2a3;
+            color: violet;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 14px;
         }
 
         nav a:hover {
-            color: #B3B6B7;
+            color: yellow;
         }
 
         nav a::before {
             content: '';
             display: block;
             height: 2px;
-            background-color: #B3B6B7;
+            background-color: yellow;
 
             position: absolute;
             top: 0;
@@ -97,7 +104,8 @@
           <main>
             <div v-if="isConnected">
               <div class ="navBar">
-                <div class="logo">VOISINONS!</div>
+                  <img class="logo" src="https://scontent-cdt1-1.xx.fbcdn.net/v/t1.15752-9/138684821_1018511501892458_6537703867276357587_n.png?_nc_cat=106&ccb=2&_nc_sid=ae9488&_nc_ohc=pfeZFAGG4kEAX9g67Mo&_nc_ht=scontent-cdt1-1.xx&oh=aa0eb822785740579e2781c2602bcca0&oe=60270008">
+                  <div class="logo2">VOISINONS!</div>
                 <nav>
                   <ul id="nav">
                     <li id="nav-home"><router-link to='/home'>Annonces</router-link></li>
